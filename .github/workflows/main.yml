@@ -14,7 +14,9 @@ jobs:
       uses: actions/checkout@v3  # Updated to v3
 
     - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.4  # Check if there's a newer version, using hypothetical v0.5.4 here
+      uses: webfactory/ssh-agent@v0.5.4  # Ensure to check if this version exists
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # This line is essential
 
     - name: Sync ESX Core contents to server
       run: rsync -avz -e "ssh -o StrictHostKeyChecking=no" . michaelcollins@109.228.52.77:/home/michaelcollins/gaming-servers/MOJRP2/
