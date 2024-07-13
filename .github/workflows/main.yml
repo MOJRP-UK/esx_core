@@ -1,0 +1,22 @@
+name: Deploy ESX Core to FiveM Server
+
+on:
+  push:
+    branches:
+      - custom-branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Sync ESX Core contents to server
+      run: rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./esx_core/ michaelcollins@109.228.52.77:/home/michaelcollins/gaming-servers/MOJRP2/
