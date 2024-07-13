@@ -20,3 +20,4 @@ jobs:
 
     - name: Sync ESX Core contents to server
       run: rsync -avz -e "ssh -o StrictHostKeyChecking=no" ./esx_core/ michaelcollins@109.228.52.77:/home/michaelcollins/gaming-servers/MOJRP2/
+      
